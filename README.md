@@ -52,6 +52,8 @@ Você pode abrir `index.html` diretamente no navegador ou usar qualquer servidor
 
 O projeto é estático e pode ser hospedado gratuitamente ou com custo baixo em GitHub Pages, Netlify, Cloudflare Pages, Vercel ou hospedagem tradicional.
 
+O repositório está preparado para publicação pelo GitHub Pages usando a branch `main` e a pasta `/(root)`.
+
 ## Observações de produção
 
 - As imagens atuais são carregadas do Unsplash e devem ser substituídas por fotos licenciadas e próprias do cliente quando o projeto for usado comercialmente.
