@@ -1,0 +1,40 @@
+name: Validate static site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f script.js
+          test -f assets/logo.svg
+          test -f assets/favicon.svg
+          test -f manifest.webmanifest
+          test -f robots.txt
+          test -f sitemap.xml
+
+      - name: Validate JavaScript syntax
+        run: node --check script.js
+
+      - name: Check essential HTML metadata
+        run: |
+          grep -q '<meta name="description"' index.html
+          grep -q '<meta property="og:title"' index.html
+          grep -q 'application/ld+json' index.html
+          grep -q 'style.css' index.html
+          grep -q 'script.js' index.html
