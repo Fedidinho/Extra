@@ -6,62 +6,27 @@ const backTop=document.querySelector('.back-top');
 const yearNode=document.querySelector('#current-year');
 const copyStatus=document.querySelector('#copy-status');
 
+const migrateOwnerRefs=()=>{
+  const oldHost='fedidinho.github.io';
+  const newHost='felipeempreendimentos.github.io';
+  const author=document.querySelector('meta[name="author"]');
+  if(author) author.content='FelipeEmpreendimentos';
+  document.querySelectorAll('[href]').forEach(el=>{const value=el.getAttribute('href');if(value?.includes(oldHost)) el.setAttribute('href',value.replaceAll(oldHost,newHost));});
+  document.querySelectorAll('meta[content]').forEach(el=>{const value=el.getAttribute('content');if(value?.includes(oldHost)) el.setAttribute('content',value.replaceAll(oldHost,newHost));});
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(el=>{if(el.textContent.includes(oldHost)) el.textContent=el.textContent.replaceAll(oldHost,newHost);});
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  let node;while((node=walker.nextNode())){if(node.nodeValue?.includes('Fedidinho')) node.nodeValue=node.nodeValue.replaceAll('Fedidinho','FelipeEmpreendimentos');}
+};
+migrateOwnerRefs();
+
 if(yearNode) yearNode.textContent=new Date().getFullYear();
 
-// As miniaturas do portfólio são previews estáticos inspirados nos próprios projetos.
-// Isso evita problemas de iframe, escala e animações internas sem perder o acesso
-// à demonstração completa ao clicar no card.
 const previewMockups=[
-  {
-    brand:'ALMEIDA & VASCONCELOS',
-    kicker:'ADVOCACIA ESTRATÉGICA',
-    title:'Clareza jurídica para decisões que movem o futuro.',
-    action:'Solicitar atendimento ↗',
-    image:'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=84',
-    accent:'#e1bf78',
-    overlay:'linear-gradient(90deg,rgba(5,8,11,.98) 0%,rgba(5,8,11,.90) 47%,rgba(5,8,11,.30) 100%)',
-    className:'preview-dark'
-  },
-  {
-    brand:'LUME ODONTOLOGIA',
-    kicker:'ODONTOLOGIA CONTEMPORÂNEA',
-    title:'Seu sorriso merece cuidado com leveza e precisão.',
-    action:'Agendar avaliação ↗',
-    image:'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1400&q=86',
-    accent:'#0e6f68',
-    overlay:'linear-gradient(90deg,rgba(244,251,249,.99) 0%,rgba(244,251,249,.94) 49%,rgba(244,251,249,.16) 100%)',
-    className:'preview-light'
-  },
-  {
-    brand:'VÉRTICE IMÓVEIS',
-    kicker:'CURADORIA IMOBILIÁRIA',
-    title:'Lugares que combinam com o próximo capítulo.',
-    action:'Explorar imóveis ↗',
-    image:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86',
-    accent:'#d38a62',
-    overlay:'linear-gradient(90deg,rgba(20,21,20,.96) 0%,rgba(20,21,20,.78) 46%,rgba(20,21,20,.18) 100%)',
-    className:'preview-dark'
-  },
-  {
-    brand:'PONTA DE TORQUE',
-    kicker:'GARAGE · SERVIÇOS AUTOMOTIVOS',
-    title:'Seu carro em dia, sem surpresa e sem enrolação.',
-    action:'Pedir orçamento ↗',
-    image:'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=86',
-    accent:'#ef7d32',
-    overlay:'linear-gradient(90deg,rgba(8,10,12,.98) 0%,rgba(8,10,12,.84) 49%,rgba(8,10,12,.22) 100%)',
-    className:'preview-dark'
-  },
-  {
-    brand:'NEXO CONTÁBIL',
-    kicker:'CONTABILIDADE CONSULTIVA',
-    title:'Menos burocracia. Mais visão para o negócio.',
-    action:'Falar com um especialista ↗',
-    image:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=86',
-    accent:'#38c6a3',
-    overlay:'linear-gradient(90deg,rgba(8,28,38,.98) 0%,rgba(8,28,38,.89) 48%,rgba(8,28,38,.24) 100%)',
-    className:'preview-dark'
-  }
+  {brand:'ALMEIDA & VASCONCELOS',kicker:'ADVOCACIA ESTRATÉGICA',title:'Clareza jurídica para decisões que movem o futuro.',action:'Solicitar atendimento ↗',image:'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=84',accent:'#e1bf78',overlay:'linear-gradient(90deg,rgba(5,8,11,.98) 0%,rgba(5,8,11,.90) 47%,rgba(5,8,11,.30) 100%)',className:'preview-dark'},
+  {brand:'LUME ODONTOLOGIA',kicker:'ODONTOLOGIA CONTEMPORÂNEA',title:'Seu sorriso merece cuidado com leveza e precisão.',action:'Agendar avaliação ↗',image:'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1400&q=86',accent:'#0e6f68',overlay:'linear-gradient(90deg,rgba(244,251,249,.99) 0%,rgba(244,251,249,.94) 49%,rgba(244,251,249,.16) 100%)',className:'preview-light'},
+  {brand:'VÉRTICE IMÓVEIS',kicker:'CURADORIA IMOBILIÁRIA',title:'Lugares que combinam com o próximo capítulo.',action:'Explorar imóveis ↗',image:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86',accent:'#d38a62',overlay:'linear-gradient(90deg,rgba(20,21,20,.96) 0%,rgba(20,21,20,.78) 46%,rgba(20,21,20,.18) 100%)',className:'preview-dark'},
+  {brand:'PONTA DE TORQUE',kicker:'GARAGE · SERVIÇOS AUTOMOTIVOS',title:'Seu carro em dia, sem surpresa e sem enrolação.',action:'Pedir orçamento ↗',image:'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=86',accent:'#ef7d32',overlay:'linear-gradient(90deg,rgba(8,10,12,.98) 0%,rgba(8,10,12,.84) 49%,rgba(8,10,12,.22) 100%)',className:'preview-dark'},
+  {brand:'NEXO CONTÁBIL',kicker:'CONTABILIDADE CONSULTIVA',title:'Menos burocracia. Mais visão para o negócio.',action:'Falar com um especialista ↗',image:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=86',accent:'#38c6a3',overlay:'linear-gradient(90deg,rgba(8,28,38,.98) 0%,rgba(8,28,38,.89) 48%,rgba(8,28,38,.24) 100%)',className:'preview-dark'}
 ];
 
 const previewStyles=document.createElement('style');
@@ -96,25 +61,14 @@ document.querySelectorAll('.iframe-stage').forEach((stage,index)=>{
   stage.style.backgroundImage=`${data.overlay}, url("${data.image}")`;
   stage.style.backgroundSize='cover';
   stage.style.backgroundPosition=index===1?'center right':'center';
-  stage.innerHTML=`
-    <div class="preview-mock ${data.className}" style="--preview-accent:${data.accent}">
-      <div class="preview-mock-brand">${data.brand}</div>
-      <div class="preview-mock-kicker">${data.kicker}</div>
-      <div class="preview-mock-title">${data.title}</div>
-      <span class="preview-mock-action">${data.action}</span>
-      <span class="preview-mock-deco" aria-hidden="true"></span>
-    </div>`;
+  stage.innerHTML=`<div class="preview-mock ${data.className}" style="--preview-accent:${data.accent}"><div class="preview-mock-brand">${data.brand}</div><div class="preview-mock-kicker">${data.kicker}</div><div class="preview-mock-title">${data.title}</div><span class="preview-mock-action">${data.action}</span><span class="preview-mock-deco" aria-hidden="true"></span></div>`;
 });
 
 const updateScrollUI=()=>{
   const y=window.scrollY;
   header?.classList.toggle('scrolled',y>28);
   backTop?.classList.toggle('visible',y>700);
-  if(progressBar){
-    const doc=document.documentElement;
-    const max=doc.scrollHeight-doc.clientHeight;
-    progressBar.style.width=max>0?`${Math.min((y/max)*100,100)}%`:'0%';
-  }
+  if(progressBar){const doc=document.documentElement;const max=doc.scrollHeight-doc.clientHeight;progressBar.style.width=max>0?`${Math.min((y/max)*100,100)}%`:'0%';}
 };
 updateScrollUI();
 window.addEventListener('scroll',updateScrollUI,{passive:true});
@@ -126,7 +80,6 @@ const closeMenu=()=>{
   mobileMenu.hidden=true;
   document.body.classList.remove('menu-open');
 };
-
 menuToggle?.addEventListener('click',()=>{
   if(!mobileMenu) return;
   const open=menuToggle.getAttribute('aria-expanded')==='true';
@@ -135,7 +88,6 @@ menuToggle?.addEventListener('click',()=>{
   mobileMenu.hidden=open;
   document.body.classList.toggle('menu-open',!open);
 });
-
 document.querySelectorAll('#mobile-menu a').forEach(link=>link.addEventListener('click',closeMenu));
 window.addEventListener('resize',()=>{if(window.innerWidth>1080) closeMenu();});
 window.addEventListener('keydown',event=>{if(event.key==='Escape') closeMenu();});
@@ -146,18 +98,8 @@ const revealElements=document.querySelectorAll('.reveal');
 if(reducedMotion||!('IntersectionObserver' in window)){
   revealElements.forEach(el=>el.classList.add('in-view'));
 }else{
-  const revealObserver=new IntersectionObserver((entries,observer)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
-    });
-  },{threshold:.1,rootMargin:'0px 0px -38px'});
-  revealElements.forEach((el,index)=>{
-    el.style.transitionDelay=`${Math.min(index%4,3)*45}ms`;
-    revealObserver.observe(el);
-  });
+  const revealObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}});},{threshold:.1,rootMargin:'0px 0px -38px'});
+  revealElements.forEach((el,index)=>{el.style.transitionDelay=`${Math.min(index%4,3)*45}ms`;revealObserver.observe(el);});
 }
 
 const navLinks=[...document.querySelectorAll('.desktop-nav a[href^="#"]')];
@@ -183,5 +125,4 @@ const copyMessage=async(button)=>{
     if(copyStatus) copyStatus.textContent=`Copie esta mensagem: ${message}`;
   }
 };
-
 document.querySelectorAll('.copy-message').forEach(button=>button.addEventListener('click',()=>copyMessage(button)));
