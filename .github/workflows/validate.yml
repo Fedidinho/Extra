@@ -33,11 +33,18 @@ jobs:
           test -f odontologia/assets/logo.svg
           test -f odontologia/assets/favicon.svg
           test -f odontologia/manifest.webmanifest
+          test -f imobiliaria/index.html
+          test -f imobiliaria/style.css
+          test -f imobiliaria/script.js
+          test -f imobiliaria/assets/logo.svg
+          test -f imobiliaria/assets/favicon.svg
+          test -f imobiliaria/manifest.webmanifest
 
       - name: Validate JavaScript syntax
         run: |
           node --check script.js
           node --check odontologia/script.js
+          node --check imobiliaria/script.js
 
       - name: Check essential HTML metadata
         run: |
@@ -51,3 +58,8 @@ jobs:
           grep -q 'application/ld+json' odontologia/index.html
           grep -q 'style.css' odontologia/index.html
           grep -q 'script.js' odontologia/index.html
+          grep -q '<meta name="description"' imobiliaria/index.html
+          grep -q '<meta property="og:title"' imobiliaria/index.html
+          grep -q 'application/ld+json' imobiliaria/index.html
+          grep -q 'style.css' imobiliaria/index.html
+          grep -q 'script.js' imobiliaria/index.html
