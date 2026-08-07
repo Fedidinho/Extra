@@ -26,8 +26,29 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260807-4">
+
+  <style>
+    .iframe-stage.static-preview{position:relative;height:calc(100% - 34px);min-height:326px;overflow:hidden;background-position:center;background-size:cover;isolation:isolate}
+    .project-wide .iframe-stage.static-preview{min-height:466px}
+    .static-preview::before{content:"";position:absolute;inset:0;background:var(--preview-overlay);z-index:0}
+    .preview-mock{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:42px 44px;color:#fff}
+    .project-wide .preview-mock{padding:58px 64px}
+    .preview-mock.light{color:#113c39}
+    .preview-brand{display:flex;align-items:center;gap:10px;font:800 .68rem/1 var(--title);letter-spacing:.16em;text-transform:uppercase}
+    .preview-brand::before{content:"";width:28px;height:2px;background:var(--preview-accent)}
+    .preview-kicker{margin-top:34px;color:var(--preview-accent);font-size:.62rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+    .preview-title{max-width:430px;margin-top:12px;font:800 clamp(1.7rem,3vw,3rem)/1.02 var(--title);letter-spacing:-.045em}
+    .project-wide .preview-title{max-width:560px;font-size:clamp(2.3rem,4vw,4.3rem)}
+    .preview-action{display:inline-flex;align-self:flex-start;margin-top:24px;padding:10px 14px;background:var(--preview-accent);color:#0c1111;font-size:.68rem;font-weight:800}
+    .preview-mock.light .preview-action{color:#fff}
+    .preview-ring{position:absolute;right:7%;bottom:9%;width:88px;height:88px;border:1px solid var(--preview-accent);border-radius:50%;opacity:.55}
+    .preview-ring::after{content:"";position:absolute;top:12px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--preview-accent);box-shadow:0 0 18px var(--preview-accent)}
+    @media(max-width:1080px){.project-wide .iframe-stage.static-preview{min-height:356px}.preview-mock,.project-wide .preview-mock{padding:34px}.project-wide .preview-title{font-size:2.7rem}}
+    @media(max-width:620px){.iframe-stage.static-preview,.project-wide .iframe-stage.static-preview{min-height:270px}.preview-mock,.project-wide .preview-mock{padding:26px}.preview-kicker{margin-top:24px}.preview-title,.project-wide .preview-title{max-width:86%;font-size:1.8rem}.preview-ring{width:62px;height:62px}}
+  </style>
 
   <script type="application/ld+json">
   {
@@ -78,7 +99,6 @@
       <div class="hero-grid-bg" aria-hidden="true"></div>
       <div class="hero-orb orb-one" aria-hidden="true"></div>
       <div class="hero-orb orb-two" aria-hidden="true"></div>
-
       <div class="container hero-layout">
         <div class="hero-copy reveal">
           <span class="eyebrow">Design · Desenvolvimento · Publicação</span>
@@ -89,10 +109,7 @@
             <button class="btn btn-ghost copy-message" type="button">Copiar mensagem de orçamento</button>
           </div>
           <div class="hero-meta" aria-label="Características dos projetos">
-            <span>100% responsivo</span>
-            <span>SEO básico</span>
-            <span>Identidade personalizada</span>
-            <span>Contato integrado</span>
+            <span>100% responsivo</span><span>SEO básico</span><span>Identidade personalizada</span><span>Contato integrado</span>
           </div>
         </div>
 
@@ -100,11 +117,7 @@
           <div class="panel-top"><span>PORTFÓLIO / 01—05</span><i></i></div>
           <strong>5 segmentos.<br>5 linguagens visuais.</strong>
           <div class="panel-list">
-            <span><b>01</b> Advocacia</span>
-            <span><b>02</b> Odontologia</span>
-            <span><b>03</b> Imobiliária</span>
-            <span><b>04</b> Oficina</span>
-            <span><b>05</b> Contabilidade</span>
+            <span><b>01</b> Advocacia</span><span><b>02</b> Odontologia</span><span><b>03</b> Imobiliária</span><span><b>04</b> Oficina</span><span><b>05</b> Contabilidade</span>
           </div>
           <p>Todos os projetos abaixo são navegáveis e foram construídos como demonstrações completas.</p>
         </aside>
@@ -112,9 +125,7 @@
     </section>
 
     <section class="intro-strip" aria-label="Resumo dos serviços">
-      <div class="container strip-grid">
-        <span>Estratégia visual</span><i>+</i><span>HTML / CSS / JS</span><i>+</i><span>Mobile first</span><i>+</i><span>Publicação</span>
-      </div>
+      <div class="container strip-grid"><span>Estratégia visual</span><i>+</i><span>HTML / CSS / JS</span><i>+</i><span>Mobile first</span><i>+</i><span>Publicação</span></div>
     </section>
 
     <section class="section projects-section" id="projetos">
@@ -128,12 +139,14 @@
           <article class="project-card project-wide reveal">
             <a class="project-preview" href="../" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração de advocacia">
               <div class="browser-bar"><span></span><span></span><span></span><small>advocacia.demo</small></div>
-              <div class="iframe-stage"><iframe src="../" title="Prévia do site de advocacia" loading="lazy" tabindex="-1"></iframe></div>
+              <div class="iframe-stage static-preview" style="--preview-overlay:linear-gradient(90deg,rgba(5,8,11,.98),rgba(5,8,11,.88) 48%,rgba(5,8,11,.24));--preview-accent:#e1bf78;background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=84')">
+                <div class="preview-mock"><div class="preview-brand">ALMEIDA &amp; VASCONCELOS</div><div class="preview-kicker">ADVOCACIA ESTRATÉGICA</div><div class="preview-title">Clareza jurídica para decisões que movem o futuro.</div><span class="preview-action">Solicitar atendimento ↗</span><span class="preview-ring" aria-hidden="true"></span></div>
+              </div>
               <div class="preview-overlay"><span>Abrir projeto ↗</span></div>
             </a>
             <div class="project-info">
               <div><span class="project-number">01</span><span class="project-type">Institucional · Premium</span></div>
-              <h3>Almeida & Vasconcelos</h3>
+              <h3>Almeida &amp; Vasconcelos</h3>
               <p>Advocacia com visual clássico, escuro e editorial, pensada para transmitir autoridade, clareza e sofisticação.</p>
               <a class="project-link" href="../" target="_blank" rel="noopener noreferrer">Ver demonstração <span>↗</span></a>
             </div>
@@ -142,7 +155,9 @@
           <article class="project-card reveal">
             <a class="project-preview" href="../odontologia/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração de odontologia">
               <div class="browser-bar"><span></span><span></span><span></span><small>lume.demo</small></div>
-              <div class="iframe-stage"><iframe src="../odontologia/" title="Prévia do site de odontologia" loading="lazy" tabindex="-1"></iframe></div>
+              <div class="iframe-stage static-preview" style="--preview-overlay:linear-gradient(90deg,rgba(244,251,249,.99),rgba(244,251,249,.92) 52%,rgba(244,251,249,.12));--preview-accent:#0e6f68;background-image:url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1400&q=86');background-position:center right">
+                <div class="preview-mock light"><div class="preview-brand">LUME ODONTOLOGIA</div><div class="preview-kicker">ODONTOLOGIA CONTEMPORÂNEA</div><div class="preview-title">Seu sorriso merece cuidado com leveza e precisão.</div><span class="preview-action">Agendar avaliação ↗</span><span class="preview-ring" aria-hidden="true"></span></div>
+              </div>
               <div class="preview-overlay"><span>Abrir projeto ↗</span></div>
             </a>
             <div class="project-info">
@@ -156,7 +171,9 @@
           <article class="project-card reveal">
             <a class="project-preview" href="../imobiliaria/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração de imobiliária">
               <div class="browser-bar"><span></span><span></span><span></span><small>vertice.demo</small></div>
-              <div class="iframe-stage"><iframe src="../imobiliaria/" title="Prévia do site de imobiliária" loading="lazy" tabindex="-1"></iframe></div>
+              <div class="iframe-stage static-preview" style="--preview-overlay:linear-gradient(90deg,rgba(20,21,20,.96),rgba(20,21,20,.76) 50%,rgba(20,21,20,.14));--preview-accent:#d38a62;background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=86')">
+                <div class="preview-mock"><div class="preview-brand">VÉRTICE IMÓVEIS</div><div class="preview-kicker">CURADORIA IMOBILIÁRIA</div><div class="preview-title">Lugares que combinam com o próximo capítulo.</div><span class="preview-action">Explorar imóveis ↗</span><span class="preview-ring" aria-hidden="true"></span></div>
+              </div>
               <div class="preview-overlay"><span>Abrir projeto ↗</span></div>
             </a>
             <div class="project-info">
@@ -170,7 +187,9 @@
           <article class="project-card reveal">
             <a class="project-preview" href="../oficina/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração de oficina">
               <div class="browser-bar"><span></span><span></span><span></span><small>pontadetorque.demo</small></div>
-              <div class="iframe-stage"><iframe src="../oficina/" title="Prévia do site de oficina" loading="lazy" tabindex="-1"></iframe></div>
+              <div class="iframe-stage static-preview" style="--preview-overlay:linear-gradient(90deg,rgba(8,10,12,.98),rgba(8,10,12,.83) 50%,rgba(8,10,12,.20));--preview-accent:#ef7d32;background-image:url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=86')">
+                <div class="preview-mock"><div class="preview-brand">PONTA DE TORQUE</div><div class="preview-kicker">GARAGE · SERVIÇOS AUTOMOTIVOS</div><div class="preview-title">Seu carro em dia, sem surpresa e sem enrolação.</div><span class="preview-action">Pedir orçamento ↗</span><span class="preview-ring" aria-hidden="true"></span></div>
+              </div>
               <div class="preview-overlay"><span>Abrir projeto ↗</span></div>
             </a>
             <div class="project-info">
@@ -184,7 +203,9 @@
           <article class="project-card reveal">
             <a class="project-preview" href="../contabilidade/" target="_blank" rel="noopener noreferrer" aria-label="Abrir demonstração de contabilidade">
               <div class="browser-bar"><span></span><span></span><span></span><small>nexo.demo</small></div>
-              <div class="iframe-stage"><iframe src="../contabilidade/" title="Prévia do site de contabilidade" loading="lazy" tabindex="-1"></iframe></div>
+              <div class="iframe-stage static-preview" style="--preview-overlay:linear-gradient(90deg,rgba(8,28,38,.98),rgba(8,28,38,.88) 50%,rgba(8,28,38,.20));--preview-accent:#38c6a3;background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=86')">
+                <div class="preview-mock"><div class="preview-brand">NEXO CONTÁBIL</div><div class="preview-kicker">CONTABILIDADE CONSULTIVA</div><div class="preview-title">Menos burocracia. Mais visão para o negócio.</div><span class="preview-action">Falar com um especialista ↗</span><span class="preview-ring" aria-hidden="true"></span></div>
+              </div>
               <div class="preview-overlay"><span>Abrir projeto ↗</span></div>
             </a>
             <div class="project-info">
@@ -206,7 +227,6 @@
           <p>O objetivo é entregar uma base profissional que possa ser adaptada à identidade, ao conteúdo e ao processo comercial da empresa.</p>
           <button class="text-button copy-message" type="button">Copiar mensagem para conversar sobre um projeto <span>→</span></button>
         </div>
-
         <div class="deliver-grid">
           <article class="deliver-item reveal"><span>01</span><h3>Design responsivo</h3><p>Layout adaptado para celular, tablet e desktop.</p></article>
           <article class="deliver-item reveal"><span>02</span><h3>Identidade aplicada</h3><p>Cores, tipografia, imagens e linguagem de acordo com o negócio.</p></article>
@@ -254,6 +274,6 @@
   </footer>
 
   <button class="back-top" type="button" aria-label="Voltar ao topo">↑</button>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=20260807-4" defer></script>
 </body>
 </html>
