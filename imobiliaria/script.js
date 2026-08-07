@@ -13,6 +13,19 @@ const searchFeedback=document.querySelector('#search-feedback');
 const emptyState=document.querySelector('#empty-state');
 const resetSearch=document.querySelector('#reset-search');
 
+const migrateOwnerRefs=()=>{
+  const oldHost='fedidinho.github.io';
+  const newHost='felipeempreendimentos.github.io';
+  const author=document.querySelector('meta[name="author"]');
+  if(author) author.content='FelipeEmpreendimentos';
+  document.querySelectorAll('[href]').forEach(el=>{const value=el.getAttribute('href');if(value?.includes(oldHost)) el.setAttribute('href',value.replaceAll(oldHost,newHost));});
+  document.querySelectorAll('meta[content]').forEach(el=>{const value=el.getAttribute('content');if(value?.includes(oldHost)) el.setAttribute('content',value.replaceAll(oldHost,newHost));});
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(el=>{if(el.textContent.includes(oldHost)) el.textContent=el.textContent.replaceAll(oldHost,newHost);});
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  let node; while((node=walker.nextNode())){if(node.nodeValue?.includes('Fedidinho')) node.nodeValue=node.nodeValue.replaceAll('Fedidinho','FelipeEmpreendimentos');}
+};
+migrateOwnerRefs();
+
 if(yearNode) yearNode.textContent=new Date().getFullYear();
 
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -58,16 +71,10 @@ if(reducedMotion||!('IntersectionObserver' in window)){
 }else{
   const revealObserver=new IntersectionObserver((entries,observer)=>{
     entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target);
-      }
+      if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}
     });
   },{threshold:.1,rootMargin:'0px 0px -40px'});
-  revealElements.forEach((el,index)=>{
-    el.style.transitionDelay=`${Math.min(index%4,3)*45}ms`;
-    revealObserver.observe(el);
-  });
+  revealElements.forEach((el,index)=>{el.style.transitionDelay=`${Math.min(index%4,3)*45}ms`;revealObserver.observe(el);});
 }
 
 const navLinks=[...document.querySelectorAll('.desktop-nav a[href^="#"]')];
@@ -82,113 +89,33 @@ if('IntersectionObserver' in window&&navSections.length){
 }
 
 if(heroMedia&&!reducedMotion&&window.matchMedia('(min-width: 861px)').matches){
-  window.addEventListener('scroll',()=>{
-    if(window.scrollY<window.innerHeight*1.15){
-      heroMedia.style.transform=`scale(1.04) translateY(${window.scrollY*.05}px)`;
-    }
-  },{passive:true});
+  window.addEventListener('scroll',()=>{if(window.scrollY<window.innerHeight*1.15){heroMedia.style.transform=`scale(1.04) translateY(${window.scrollY*.05}px)`;}},{passive:true});
 }
 
 const counters=document.querySelectorAll('[data-counter]');
 const animateCounter=element=>{
-  const target=Number(element.dataset.counter||0);
-  const duration=1200;
-  const start=performance.now();
-  const tick=now=>{
-    const progress=Math.min((now-start)/duration,1);
-    const eased=1-Math.pow(1-progress,3);
-    element.textContent=Math.floor(target*eased);
-    if(progress<1) requestAnimationFrame(tick);
-  };
+  const target=Number(element.dataset.counter||0);const duration=1200;const start=performance.now();
+  const tick=now=>{const progress=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-progress,3);element.textContent=Math.floor(target*eased);if(progress<1) requestAnimationFrame(tick);};
   requestAnimationFrame(tick);
 };
 if('IntersectionObserver' in window&&!reducedMotion){
-  const counterObserver=new IntersectionObserver((entries,observer)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){animateCounter(entry.target);observer.unobserve(entry.target);}
-    });
-  },{threshold:.6});
+  const counterObserver=new IntersectionObserver((entries,observer)=>{entries.forEach(entry=>{if(entry.isIntersecting){animateCounter(entry.target);observer.unobserve(entry.target);}});},{threshold:.6});
   counters.forEach(counter=>counterObserver.observe(counter));
-}else{
-  counters.forEach(counter=>counter.textContent=counter.dataset.counter||'0');
-}
+}else{counters.forEach(counter=>counter.textContent=counter.dataset.counter||'0');}
 
 const cards=[...document.querySelectorAll('.property-card')];
 const applyFilters=()=>{
   if(!propertySearch) return;
-  const negocio=propertySearch.negocio.value;
-  const tipo=propertySearch.tipo.value;
-  const bairro=propertySearch.bairro.value;
-  let visible=0;
-  cards.forEach(card=>{
-    const matchNegocio=negocio==='todos'||card.dataset.negocio===negocio;
-    const matchTipo=tipo==='todos'||card.dataset.tipo===tipo;
-    const matchBairro=bairro==='todos'||card.dataset.bairro===bairro;
-    const show=matchNegocio&&matchTipo&&matchBairro;
-    card.classList.toggle('hidden',!show);
-    if(show) visible++;
-  });
+  const negocio=propertySearch.negocio.value;const tipo=propertySearch.tipo.value;const bairro=propertySearch.bairro.value;let visible=0;
+  cards.forEach(card=>{const matchNegocio=negocio==='todos'||card.dataset.negocio===negocio;const matchTipo=tipo==='todos'||card.dataset.tipo===tipo;const matchBairro=bairro==='todos'||card.dataset.bairro===bairro;const show=matchNegocio&&matchTipo&&matchBairro;card.classList.toggle('hidden',!show);if(show) visible++;});
   if(emptyState) emptyState.hidden=visible>0;
-  if(searchFeedback){
-    searchFeedback.textContent=visible===0?'Nenhum resultado nesta seleção demonstrativa.':`${visible} ${visible===1?'imóvel encontrado':'imóveis encontrados'} nesta demonstração.`;
-  }
+  if(searchFeedback) searchFeedback.textContent=visible===0?'Nenhum resultado nesta seleção demonstrativa.':`${visible} ${visible===1?'imóvel encontrado':'imóveis encontrados'} nesta demonstração.`;
   document.querySelector('#imoveis')?.scrollIntoView({behavior:reducedMotion?'auto':'smooth',block:'start'});
 };
-
 propertySearch?.addEventListener('submit',event=>{event.preventDefault();applyFilters();});
-
-resetSearch?.addEventListener('click',()=>{
-  if(!propertySearch) return;
-  propertySearch.reset();
-  cards.forEach(card=>card.classList.remove('hidden'));
-  if(emptyState) emptyState.hidden=true;
-  if(searchFeedback) searchFeedback.textContent='';
-});
-
-document.querySelectorAll('[data-region]').forEach(link=>{
-  link.addEventListener('click',()=>{
-    if(!propertySearch) return;
-    propertySearch.bairro.value=link.dataset.region||'todos';
-    propertySearch.negocio.value='todos';
-    propertySearch.tipo.value='todos';
-    setTimeout(applyFilters,80);
-  });
-});
-
-document.querySelectorAll('.favorite').forEach(button=>{
-  button.addEventListener('click',event=>{
-    event.preventDefault();
-    event.stopPropagation();
-    const active=button.classList.toggle('active');
-    button.textContent=active?'♥':'♡';
-    button.setAttribute('aria-label',active?'Remover dos favoritos demonstrativos':'Adicionar aos favoritos demonstrativos');
-  });
-});
-
-phoneInput?.addEventListener('input',()=>{
-  const digits=phoneInput.value.replace(/\D/g,'').slice(0,11);
-  let formatted=digits;
-  if(digits.length>2) formatted=`(${digits.slice(0,2)}) ${digits.slice(2)}`;
-  if(digits.length>7) formatted=`(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
-  phoneInput.value=formatted;
-});
-
-form?.addEventListener('submit',event=>{
-  event.preventDefault();
-  if(!form.checkValidity()){
-    form.reportValidity();
-    if(formStatus) formStatus.textContent='Revise os campos obrigatórios antes de continuar.';
-    return;
-  }
-  const submit=form.querySelector('button[type="submit"]');
-  if(submit){
-    const original=submit.innerHTML;
-    submit.disabled=true;
-    submit.textContent='Mensagem preparada ✓';
-    setTimeout(()=>{submit.disabled=false;submit.innerHTML=original;},2200);
-  }
-  if(formStatus) formStatus.textContent='Demonstração concluída. Em um site real, a mensagem seria enviada ao CRM, e-mail ou WhatsApp.';
-  form.reset();
-});
-
+resetSearch?.addEventListener('click',()=>{if(!propertySearch)return;propertySearch.reset();cards.forEach(card=>card.classList.remove('hidden'));if(emptyState) emptyState.hidden=true;if(searchFeedback) searchFeedback.textContent='';});
+document.querySelectorAll('[data-region]').forEach(link=>{link.addEventListener('click',()=>{if(!propertySearch)return;propertySearch.bairro.value=link.dataset.region||'todos';propertySearch.negocio.value='todos';propertySearch.tipo.value='todos';setTimeout(applyFilters,80);});});
+document.querySelectorAll('.favorite').forEach(button=>{button.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const active=button.classList.toggle('active');button.textContent=active?'♥':'♡';button.setAttribute('aria-label',active?'Remover dos favoritos demonstrativos':'Adicionar aos favoritos demonstrativos');});});
+phoneInput?.addEventListener('input',()=>{const digits=phoneInput.value.replace(/\D/g,'').slice(0,11);let formatted=digits;if(digits.length>2) formatted=`(${digits.slice(0,2)}) ${digits.slice(2)}`;if(digits.length>7) formatted=`(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;phoneInput.value=formatted;});
+form?.addEventListener('submit',event=>{event.preventDefault();if(!form.checkValidity()){form.reportValidity();if(formStatus) formStatus.textContent='Revise os campos obrigatórios antes de continuar.';return;}const submit=form.querySelector('button[type="submit"]');if(submit){const original=submit.innerHTML;submit.disabled=true;submit.textContent='Mensagem preparada ✓';setTimeout(()=>{submit.disabled=false;submit.innerHTML=original;},2200);}if(formStatus) formStatus.textContent='Demonstração concluída. Em um site real, a mensagem seria enviada ao CRM, e-mail ou WhatsApp.';form.reset();});
 document.querySelectorAll('a[href="#"]').forEach(link=>link.addEventListener('click',event=>event.preventDefault()));
