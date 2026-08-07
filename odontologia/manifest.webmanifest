@@ -1,0 +1,16 @@
+{
+  "name": "Lume Odontologia",
+  "short_name": "Lume",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6faf8",
+  "theme_color": "#0e5f5a",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
