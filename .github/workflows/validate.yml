@@ -45,6 +45,12 @@ jobs:
           test -f oficina/assets/logo.svg
           test -f oficina/assets/favicon.svg
           test -f oficina/manifest.webmanifest
+          test -f contabilidade/index.html
+          test -f contabilidade/style.css
+          test -f contabilidade/script.js
+          test -f contabilidade/assets/logo.svg
+          test -f contabilidade/assets/favicon.svg
+          test -f contabilidade/manifest.webmanifest
 
       - name: Validate JavaScript syntax
         run: |
@@ -52,10 +58,11 @@ jobs:
           node --check odontologia/script.js
           node --check imobiliaria/script.js
           node --check oficina/script.js
+          node --check contabilidade/script.js
 
       - name: Check essential HTML metadata
         run: |
-          for page in index.html odontologia/index.html imobiliaria/index.html oficina/index.html; do
+          for page in index.html odontologia/index.html imobiliaria/index.html oficina/index.html contabilidade/index.html; do
             grep -q '<meta name="description"' "$page"
             grep -q '<meta property="og:title"' "$page"
             grep -q 'application/ld+json' "$page"
