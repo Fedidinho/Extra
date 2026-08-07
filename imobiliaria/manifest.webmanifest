@@ -1,0 +1,16 @@
+{
+  "name": "Vértice Imóveis",
+  "short_name": "Vértice",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#171918",
+  "theme_color": "#171918",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
