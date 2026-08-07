@@ -6,6 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://fedidinho.github.io/Extra/portfolio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://fedidinho.github.io/Extra/odontologia/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
