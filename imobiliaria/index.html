@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171918">
+  <meta name="description" content="Vértice Imóveis — template imobiliário premium com imóveis selecionados, busca inteligente e atendimento consultivo.">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="Fedidinho">
+  <link rel="canonical" href="https://fedidinho.github.io/Extra/imobiliaria/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Vértice Imóveis | Lugares que combinam com o próximo capítulo">
+  <meta property="og:description" content="Curadoria imobiliária, imóveis selecionados e uma experiência digital premium.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=88">
+  <meta property="og:url" content="https://fedidinho.github.io/Extra/imobiliaria/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vértice Imóveis">
+  <meta name="twitter:description" content="Uma forma mais humana, visual e inteligente de encontrar imóveis.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=88">
+
+  <title>Vértice Imóveis | Curadoria imobiliária premium</title>
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Vértice Imóveis",
+    "description": "Imobiliária fictícia criada como template demonstrativo de portfólio.",
+    "url": "https://fedidinho.github.io/Extra/imobiliaria/",
+    "telephone": "+55-41-99999-1111",
+    "email": "contato@vertice.example",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Alameda Horizonte, 220",
+      "addressLocality": "Curitiba",
+      "addressRegion": "PR",
+      "postalCode": "80000-000",
+      "addressCountry": "BR"
+    },
+    "areaServed": "Curitiba e região"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" id="inicio">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Vértice Imóveis - início">
+        <img src="assets/logo.svg" alt="" width="42" height="42">
+        <span><strong>VÉRTICE</strong><small>IMÓVEIS</small></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="#imoveis">Imóveis</a>
+        <a href="#regioes">Regiões</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a class="header-cta" href="#contato">Falar com um consultor <span aria-hidden="true">↗</span></a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <a href="#imoveis">Imóveis</a>
+      <a href="#regioes">Regiões</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato">Contato</a>
+      <a class="mobile-menu-cta" href="#contato">Falar com um consultor</a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+          <span class="kicker">Curadoria imobiliária · Curitiba</span>
+          <h1 id="hero-title">Encontre um lugar que faça sentido para o seu <em>próximo capítulo.</em></h1>
+          <p>Seleção criteriosa de imóveis, informação clara e acompanhamento próximo para comprar, vender ou alugar com mais confiança.</p>
+        </div>
+
+        <div class="hero-signature reveal" aria-hidden="true">
+          <span>01</span>
+          <div></div>
+          <p>Arquitetura, localização e estilo de vida em uma única busca.</p>
+        </div>
+      </div>
+
+      <div class="container search-shell reveal">
+        <form class="property-search" id="property-search">
+          <div class="search-field">
+            <label for="negocio">Quero</label>
+            <select id="negocio" name="negocio">
+              <option value="todos">Comprar ou alugar</option>
+              <option value="venda">Comprar</option>
+              <option value="locacao">Alugar</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="tipo">Tipo de imóvel</label>
+            <select id="tipo" name="tipo">
+              <option value="todos">Todos os tipos</option>
+              <option value="apartamento">Apartamento</option>
+              <option value="casa">Casa</option>
+              <option value="cobertura">Cobertura</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label for="bairro">Região</label>
+            <select id="bairro" name="bairro">
+              <option value="todos">Todas as regiões</option>
+              <option value="batel">Batel</option>
+              <option value="ecoville">Ecoville</option>
+              <option value="agua-verde">Água Verde</option>
+              <option value="cabral">Cabral</option>
+            </select>
+          </div>
+          <button type="submit">Buscar imóveis <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="search-feedback" id="search-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="intro-strip" aria-label="Diferenciais">
+      <div class="container intro-grid">
+        <div class="intro-number reveal"><strong data-counter="180">0</strong><span>imóveis em curadoria*</span></div>
+        <div class="intro-copy reveal"><span>Escolhas melhores começam com contexto.</span><p>Mais do que mostrar anúncios, organizamos informações para aproximar você do imóvel certo.</p></div>
+        <a class="intro-link reveal" href="#experiencia">Nossa forma de trabalhar <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="section properties-section" id="imoveis">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="kicker dark">Seleção Vértice</span>
+            <h2>Imóveis que merecem ser vistos com calma.</h2>
+          </div>
+          <p>Uma curadoria visual para mostrar localização, arquitetura, atmosfera e os detalhes que fazem diferença na decisão.</p>
+        </div>
+
+        <div class="property-grid" id="property-grid">
+          <article class="property-card property-card-large reveal" data-negocio="venda" data-tipo="apartamento" data-bairro="batel">
+            <a href="#contato" class="property-photo">
+              <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=88" alt="Apartamento contemporâneo com sala ampla" loading="lazy">
+              <span class="property-badge">Destaque</span>
+              <button class="favorite" type="button" aria-label="Favoritar apartamento no Batel">♡</button>
+            </a>
+            <div class="property-info">
+              <div class="property-location"><span>Batel · Curitiba</span><span>Ref. VT-042</span></div>
+              <h3>Residência Alameda 455</h3>
+              <div class="property-specs"><span>184 m²</span><span>3 suítes</span><span>3 vagas</span></div>
+              <div class="property-bottom"><strong>R$ 2.480.000</strong><a href="#contato">Ver detalhes ↗</a></div>
+            </div>
+          </article>
+
+          <article class="property-card reveal" data-negocio="venda" data-tipo="casa" data-bairro="ecoville">
+            <a href="#contato" class="property-photo">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=88" alt="Casa moderna com integração entre interior e jardim" loading="lazy">
+              <button class="favorite" type="button" aria-label="Favoritar casa no Ecoville">♡</button>
+            </a>
+            <div class="property-info">
+              <div class="property-location"><span>Ecoville · Curitiba</span><span>VT-116</span></div>
+              <h3>Casa Jardim Suspenso</h3>
+              <div class="property-specs"><span>310 m²</span><span>4 suítes</span><span>4 vagas</span></div>
+              <div class="property-bottom"><strong>R$ 3.890.000</strong><a href="#contato">Ver ↗</a></div>
+            </div>
+          </article>
+
+          <article class="property-card reveal" data-negocio="locacao" data-tipo="apartamento" data-bairro="agua-verde">
+            <a href="#contato" class="property-photo">
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1100&q=88" alt="Sala de apartamento com decoração minimalista" loading="lazy">
+              <span class="property-badge light">Locação</span>
+              <button class="favorite" type="button" aria-label="Favoritar apartamento no Água Verde">♡</button>
+            </a>
+            <div class="property-info">
+              <div class="property-location"><span>Água Verde · Curitiba</span><span>VT-208</span></div>
+              <h3>Apartamento Linha 27</h3>
+              <div class="property-specs"><span>96 m²</span><span>2 quartos</span><span>2 vagas</span></div>
+              <div class="property-bottom"><strong>R$ 6.900/mês</strong><a href="#contato">Ver ↗</a></div>
+            </div>
+          </article>
+
+          <article class="property-card reveal" data-negocio="venda" data-tipo="cobertura" data-bairro="cabral">
+            <a href="#contato" class="property-photo">
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1100&q=88" alt="Cobertura sofisticada com grandes janelas" loading="lazy">
+              <button class="favorite" type="button" aria-label="Favoritar cobertura no Cabral">♡</button>
+            </a>
+            <div class="property-info">
+              <div class="property-location"><span>Cabral · Curitiba</span><span>VT-301</span></div>
+              <h3>Cobertura Aurora</h3>
+              <div class="property-specs"><span>222 m²</span><span>3 suítes</span><span>3 vagas</span></div>
+              <div class="property-bottom"><strong>R$ 2.970.000</strong><a href="#contato">Ver ↗</a></div>
+            </div>
+          </article>
+
+          <article class="property-card reveal" data-negocio="locacao" data-tipo="casa" data-bairro="ecoville">
+            <a href="#contato" class="property-photo">
+              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1100&q=88" alt="Casa com arquitetura contemporânea" loading="lazy">
+              <span class="property-badge light">Locação</span>
+              <button class="favorite" type="button" aria-label="Favoritar casa para locação no Ecoville">♡</button>
+            </a>
+            <div class="property-info">
+              <div class="property-location"><span>Ecoville · Curitiba</span><span>VT-244</span></div>
+              <h3>Casa Bosque 08</h3>
+              <div class="property-specs"><span>248 m²</span><span>3 suítes</span><span>3 vagas</span></div>
+              <div class="property-bottom"><strong>R$ 14.500/mês</strong><a href="#contato">Ver ↗</a></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <strong>Nenhum imóvel da demonstração combina com esses filtros.</strong>
+          <p>Em um projeto real, esta busca seria conectada ao catálogo completo da imobiliária.</p>
+          <button type="button" id="reset-search">Limpar filtros</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="regions-section" id="regioes">
+      <div class="container">
+        <div class="regions-title reveal">
+          <span class="kicker">Explore por região</span>
+          <h2>O endereço também conta uma história.</h2>
+        </div>
+
+        <div class="regions-grid">
+          <a class="region-card region-main reveal" href="#imoveis" data-region="batel">
+            <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1400&q=86" alt="Arquitetura urbana contemporânea" loading="lazy">
+            <span class="region-overlay"></span>
+            <div><small>01</small><h3>Batel</h3><p>Gastronomia, arquitetura e vida urbana sofisticada.</p><span>Ver imóveis →</span></div>
+          </a>
+          <a class="region-card reveal" href="#imoveis" data-region="ecoville">
+            <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1000&q=86" alt="Residência cercada por área verde" loading="lazy">
+            <span class="region-overlay"></span>
+            <div><small>02</small><h3>Ecoville</h3><p>Espaço, verde e condomínios contemporâneos.</p><span>Ver imóveis →</span></div>
+          </a>
+          <a class="region-card reveal" href="#imoveis" data-region="agua-verde">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=86" alt="Edifícios residenciais modernos" loading="lazy">
+            <span class="region-overlay"></span>
+            <div><small>03</small><h3>Água Verde</h3><p>Conveniência, mobilidade e excelente infraestrutura.</p><span>Ver imóveis →</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience-section" id="experiencia">
+      <div class="container experience-grid">
+        <div class="experience-media reveal">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1300&q=88" alt="Consultora apresentando informações de um imóvel" loading="lazy">
+          <div class="experience-note"><span>Vértice</span><p>Menos ruído. Mais contexto para decidir.</p></div>
+        </div>
+
+        <div class="experience-copy reveal">
+          <span class="kicker dark">Nossa experiência</span>
+          <h2>Imobiliária não precisa parecer um catálogo infinito.</h2>
+          <p class="lead">A tecnologia ajuda a filtrar. O olhar humano ajuda a entender o que realmente combina com o momento de cada cliente.</p>
+          <p>Organizamos busca, visita, negociação e documentação em uma jornada clara, com informações relevantes e acompanhamento próximo.</p>
+
+          <div class="experience-points">
+            <article><span>01</span><div><h3>Curadoria</h3><p>Seleção de imóveis com boa leitura de localização, produto e valor.</p></div></article>
+            <article><span>02</span><div><h3>Visita inteligente</h3><p>Menos visitas aleatórias e mais opções alinhadas ao que importa.</p></div></article>
+            <article><span>03</span><div><h3>Negociação acompanhada</h3><p>Informação clara sobre proposta, documentação e próximos passos.</p></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container services-layout">
+        <div class="services-heading reveal">
+          <span class="kicker">Para cada movimento</span>
+          <h2>Comprar, vender ou alugar com uma condução mais organizada.</h2>
+        </div>
+        <div class="services-list">
+          <article class="service-item reveal"><span>01</span><h3>Compra</h3><p>Busca direcionada, comparação de oportunidades e suporte até a conclusão.</p><a href="#contato">Encontrar um imóvel ↗</a></article>
+          <article class="service-item reveal"><span>02</span><h3>Venda</h3><p>Posicionamento, apresentação, divulgação e condução das negociações.</p><a href="#contato">Anunciar um imóvel ↗</a></article>
+          <article class="service-item reveal"><span>03</span><h3>Locação</h3><p>Imóveis selecionados, processo claro e suporte nas etapas documentais.</p><a href="#contato">Ver opções ↗</a></article>
+          <article class="service-item reveal"><span>04</span><h3>Avaliação</h3><p>Leitura de mercado para apoiar decisões de preço e posicionamento.</p><a href="#contato">Solicitar avaliação ↗</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section" id="equipe">
+      <div class="container">
+        <div class="section-head team-head reveal">
+          <div><span class="kicker dark">Consultores</span><h2>Pessoas que conhecem imóveis — e escutam pessoas.</h2></div>
+          <p>Perfis demonstrativos para apresentar como a imobiliária pode humanizar sua equipe e facilitar o contato.</p>
+        </div>
+
+        <div class="team-grid">
+          <article class="agent-card reveal">
+            <div class="agent-photo"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=86" alt="Retrato profissional de consultora imobiliária fictícia" loading="lazy"></div>
+            <div class="agent-info"><span>Residencial · Alto padrão</span><h3>Laura Mendes</h3><p>CRECI 00.000-F*</p><a href="#contato">Falar com Laura ↗</a></div>
+          </article>
+          <article class="agent-card reveal">
+            <div class="agent-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=86" alt="Retrato profissional de consultor imobiliário fictício" loading="lazy"></div>
+            <div class="agent-info"><span>Investimento · Novos</span><h3>Caio Ferraz</h3><p>CRECI 00.001-F*</p><a href="#contato">Falar com Caio ↗</a></div>
+          </article>
+          <article class="agent-card reveal">
+            <div class="agent-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=86" alt="Retrato profissional de consultora imobiliária fictícia" loading="lazy"></div>
+            <div class="agent-info"><span>Locação · Relocation</span><h3>Bruna Salles</h3><p>CRECI 00.002-F*</p><a href="#contato">Falar com Bruna ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal-section" id="conteudos">
+      <div class="container journal-grid">
+        <div class="journal-feature reveal">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1300&q=86" alt="Apartamento bem iluminado com design contemporâneo" loading="lazy">
+          <div><span>Guia Vértice · 7 min</span><h2>Como olhar um imóvel além das fotos bonitas</h2><p>Localização, planta, incidência solar, condomínio, liquidez e outros pontos que merecem atenção antes de decidir.</p><a href="#contato">Ler conteúdo →</a></div>
+        </div>
+        <div class="journal-side reveal">
+          <span class="kicker dark">Conteúdo</span>
+          <article><small>Mercado</small><h3>Comprar para morar ou investir: o que muda na análise?</h3><a href="#contato">Ler ↗</a></article>
+          <article><small>Venda</small><h3>O que ajuda um imóvel a se destacar na apresentação digital?</h3><a href="#contato">Ler ↗</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contato">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="kicker">Vamos conversar</span>
+          <h2>Conte o que você procura. A gente começa por aí.</h2>
+          <p>Comprar, vender ou alugar? Envie uma breve mensagem e deixe a próxima etapa mais simples.</p>
+
+          <div class="contact-lines">
+            <div><span>WhatsApp</span><a href="tel:+5541999991111">(41) 99999-1111</a></div>
+            <div><span>E-mail</span><a href="mailto:contato@vertice.example">contato@vertice.example</a></div>
+            <div><span>Endereço</span><p>Alameda Horizonte, 220 · Curitiba/PR</p></div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="form-title"><span>Atendimento Vértice</span><strong>Qual é o seu próximo movimento?</strong></div>
+          <div class="form-grid">
+            <label><span>Nome</span><input type="text" name="nome" autocomplete="name" required placeholder="Seu nome"></label>
+            <label><span>Telefone</span><input id="telefone" type="tel" name="telefone" autocomplete="tel" required placeholder="(00) 00000-0000"></label>
+            <label><span>Interesse</span><select name="interesse" required><option value="">Selecione</option><option>Quero comprar</option><option>Quero vender</option><option>Quero alugar</option><option>Quero anunciar para locação</option><option>Quero uma avaliação</option></select></label>
+            <label><span>Faixa de valor</span><select name="valor"><option>Não definido</option><option>Até R$ 700 mil</option><option>R$ 700 mil a R$ 1,5 mi</option><option>R$ 1,5 mi a R$ 3 mi</option><option>Acima de R$ 3 mi</option></select></label>
+          </div>
+          <label class="message-field"><span>Mensagem</span><textarea name="mensagem" rows="5" required placeholder="Conte brevemente o que você procura."></textarea></label>
+          <label class="privacy-check"><input type="checkbox" required><span>Concordo com o uso destes dados apenas para retorno deste contato demonstrativo.</span></label>
+          <button type="submit">Enviar mensagem <span>↗</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <small>Projeto demonstrativo: nenhum dado é enviado a servidor.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand"><a class="brand" href="#inicio"><img src="assets/logo.svg" alt="" width="42" height="42"><span><strong>VÉRTICE</strong><small>IMÓVEIS</small></span></a><p>Uma experiência digital demonstrativa para imobiliárias que querem apresentar imóveis com mais qualidade.</p></div>
+      <div class="footer-nav"><div><span>Explorar</span><a href="#imoveis">Imóveis</a><a href="#regioes">Regiões</a><a href="#experiencia">Experiência</a></div><div><span>Atendimento</span><a href="#contato">Comprar</a><a href="#contato">Vender</a><a href="#contato">Alugar</a></div><div><span>Institucional</span><a href="#equipe">Equipe</a><a href="#conteudos">Conteúdo</a><a href="#">Privacidade</a></div></div>
+    </div>
+    <div class="container footer-bottom"><p>© <span id="current-year"></span> Vértice Imóveis · Projeto demonstrativo.</p><p>Dados, imóveis e CRECIs são fictícios.</p></div>
+  </footer>
+
+  <a class="floating-whatsapp" href="https://wa.me/5541999991111?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20um%20im%C3%B3vel." target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp"><span>WhatsApp</span><b>↗</b></a>
+  <button class="back-top" type="button" aria-label="Voltar ao topo">↑</button>
+  <div class="demo-badge" aria-label="Projeto demonstrativo">DEMO</div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
