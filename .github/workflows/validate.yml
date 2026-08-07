@@ -39,27 +39,26 @@ jobs:
           test -f imobiliaria/assets/logo.svg
           test -f imobiliaria/assets/favicon.svg
           test -f imobiliaria/manifest.webmanifest
+          test -f oficina/index.html
+          test -f oficina/style.css
+          test -f oficina/script.js
+          test -f oficina/assets/logo.svg
+          test -f oficina/assets/favicon.svg
+          test -f oficina/manifest.webmanifest
 
       - name: Validate JavaScript syntax
         run: |
           node --check script.js
           node --check odontologia/script.js
           node --check imobiliaria/script.js
+          node --check oficina/script.js
 
       - name: Check essential HTML metadata
         run: |
-          grep -q '<meta name="description"' index.html
-          grep -q '<meta property="og:title"' index.html
-          grep -q 'application/ld+json' index.html
-          grep -q 'style.css' index.html
-          grep -q 'script.js' index.html
-          grep -q '<meta name="description"' odontologia/index.html
-          grep -q '<meta property="og:title"' odontologia/index.html
-          grep -q 'application/ld+json' odontologia/index.html
-          grep -q 'style.css' odontologia/index.html
-          grep -q 'script.js' odontologia/index.html
-          grep -q '<meta name="description"' imobiliaria/index.html
-          grep -q '<meta property="og:title"' imobiliaria/index.html
-          grep -q 'application/ld+json' imobiliaria/index.html
-          grep -q 'style.css' imobiliaria/index.html
-          grep -q 'script.js' imobiliaria/index.html
+          for page in index.html odontologia/index.html imobiliaria/index.html oficina/index.html; do
+            grep -q '<meta name="description"' "$page"
+            grep -q '<meta property="og:title"' "$page"
+            grep -q 'application/ld+json' "$page"
+            grep -q 'style.css' "$page"
+            grep -q 'script.js' "$page"
+          done
