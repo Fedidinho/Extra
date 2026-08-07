@@ -8,6 +8,19 @@ const copyStatus=document.querySelector('#copy-status');
 
 if(yearNode) yearNode.textContent=new Date().getFullYear();
 
+// Força o carregamento imediato das prévias. Os iframes são reduzidos via CSS e,
+// quando combinados com loading="lazy", alguns navegadores postergam o download
+// mesmo quando o card já está visível, deixando apenas o fundo escuro da moldura.
+const previewFrames=[...document.querySelectorAll('.iframe-stage iframe')];
+previewFrames.forEach(frame=>{
+  const rawSrc=frame.getAttribute('src');
+  if(!rawSrc) return;
+  const absoluteSrc=new URL(rawSrc,window.location.href).href;
+  frame.loading='eager';
+  frame.setAttribute('loading','eager');
+  frame.src=absoluteSrc;
+});
+
 const updateScrollUI=()=>{
   const y=window.scrollY;
   header?.classList.toggle('scrolled',y>28);
