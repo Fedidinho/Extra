@@ -27,9 +27,17 @@ jobs:
           test -f manifest.webmanifest
           test -f robots.txt
           test -f sitemap.xml
+          test -f odontologia/index.html
+          test -f odontologia/style.css
+          test -f odontologia/script.js
+          test -f odontologia/assets/logo.svg
+          test -f odontologia/assets/favicon.svg
+          test -f odontologia/manifest.webmanifest
 
       - name: Validate JavaScript syntax
-        run: node --check script.js
+        run: |
+          node --check script.js
+          node --check odontologia/script.js
 
       - name: Check essential HTML metadata
         run: |
@@ -38,3 +46,8 @@ jobs:
           grep -q 'application/ld+json' index.html
           grep -q 'style.css' index.html
           grep -q 'script.js' index.html
+          grep -q '<meta name="description"' odontologia/index.html
+          grep -q '<meta property="og:title"' odontologia/index.html
+          grep -q 'application/ld+json' odontologia/index.html
+          grep -q 'style.css' odontologia/index.html
+          grep -q 'script.js' odontologia/index.html
